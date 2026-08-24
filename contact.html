@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — bjd859</title>
+<meta name="description" content="Tell me about your project and I'll follow up with next steps or a quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dot-grid" aria-hidden="true"></div>
+  <div class="dot-grid-highlight" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="wordmark" href="index.html">bjd859</a>
+  </header>
+
+  <main class="page">
+    <a class="back-link" href="index.html">← Back</a>
+    <div class="panel">
+      <span class="eyebrow">Something bigger</span>
+      <h2>Tell me what's going on</h2>
+      <p class="lede" style="margin-bottom: 0;">For custom projects, larger jobs, or anything that needs more than a quick call. I'll follow up with next steps or a quote.</p>
+
+      <!--
+        FORM BACKEND — placeholder.
+        Options discussed:
+          1) TypeForm: replace this whole <form> with a TypeForm embed
+             snippet, or link the button straight to your Typeform URL.
+          2) Self-hosted endpoint: keep this form, set the action below
+             to your endpoint (e.g. action="https://your-api.example.com/contact")
+             and method="POST".
+        Until one of those is wired up, this form does not submit anywhere.
+      -->
+      <form class="contact-form" action="#" method="POST" data-backend="placeholder">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="message">What do you need help with?</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary contact-theme">Send</button>
+      </form>
+
+      <p class="crosslink">Just need something quick? <a href="book.html">Book a call instead →</a></p>
+    </div>
+  </main>
+
+  <footer class="site-footer">bjd859.com</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
