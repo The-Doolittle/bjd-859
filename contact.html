@@ -26,23 +26,29 @@
       <p class="lede" style="margin-bottom: 0;">For custom projects, larger jobs, or anything that needs more than a quick call. I'll follow up with next steps or a quote.</p>
 
       <!--
-        FORM BACKEND — placeholder.
-        Options discussed:
-          1) TypeForm: replace this whole <form> with a TypeForm embed
-             snippet, or link the button straight to your Typeform URL.
-          2) Self-hosted endpoint: keep this form, set the action below
-             to your endpoint (e.g. action="https://your-api.example.com/contact")
-             and method="POST".
-        Until one of those is wired up, this form does not submit anywhere.
+        FORM BACKEND — FormSubmit.co (no signup, no server needed).
+        Submits directly to team@doolittledoes.com.
+
+        IMPORTANT — first submission only:
+        FormSubmit sends a one-time "activation" email to
+        team@doolittledoes.com the first time this form is submitted.
+        Someone with access to that inbox has to click the confirm link
+        in that email before any submissions start arriving normally.
+        Test it once after deploying to trigger that email.
       -->
-      <form class="contact-form" action="#" method="POST" data-backend="placeholder">
+      <form class="contact-form" action="https://formsubmit.co/team@doolittledoes.com" method="POST">
+        <input type="hidden" name="_subject" value="New Form submission from bjd859.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://bjd859.com/thanks.html">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
         <div class="field">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
         </div>
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="_replyto" required>
         </div>
         <div class="field">
           <label for="message">What do you need help with?</label>
