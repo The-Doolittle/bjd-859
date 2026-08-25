@@ -1,18 +1,18 @@
 // Hero headline: two lines rotate together as word pairs, like a quick
 // text exchange — top line slides in from the left, bottom line follows
-// ~1s later sliding in from the right, both with a fade+blur+rise entrance.
+// ~1s later sliding in from the right. The whole bottom line takes on
+// a highlight color per pair; the top line stays black.
 (function () {
   var topEl = document.getElementById('heroTop');
   var bottomEl = document.getElementById('heroBottom');
-  var verbEl = document.getElementById('heroVerb');
-  if (!topEl || !bottomEl || !verbEl) return;
+  if (!topEl || !bottomEl) return;
 
   var pairs = [
-    { top: 'Something broken?', verb: 'fix', color: '#0891b2' },          // cyan
-    { top: 'Something acting weird?', verb: 'troubleshoot', color: '#4d7c0f' }, // lime green
-    { top: 'Got a tech question?', verb: 'answer', color: '#ea580c' },    // red-orange
-    { top: 'Need something set up?', verb: 'handle', color: '#1e3a8a' },  // dark blue
-    { top: 'Stuck on something?', verb: 'untangle', color: '#7c3aed' }    // violet
+    { top: 'Something broken?', bottom: 'Let me take a look.', color: '#0891b2' },   // cyan
+    { top: 'Disobedient printer?', bottom: 'Not for long.', color: '#4d7c0f' },       // lime green
+    { top: 'Tech questions?', bottom: 'Human answers.', color: '#ea580c' },           // red-orange
+    { top: 'Setup woes?', bottom: 'Taken care of.', color: '#1e3a8a' },               // dark blue
+    { top: 'Stuck on something?', bottom: 'Make it my problem.', color: '#7c3aed' }   // violet
   ];
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -20,8 +20,8 @@
   if (reduceMotion) {
     // Static: show the first pair, no animation, no cycling.
     topEl.textContent = pairs[0].top;
-    verbEl.textContent = pairs[0].verb;
-    verbEl.style.color = pairs[0].color;
+    bottomEl.textContent = pairs[0].bottom;
+    bottomEl.style.color = pairs[0].color;
     topEl.classList.add('visible');
     bottomEl.classList.add('visible');
     return;
@@ -59,8 +59,8 @@
   function runCycle() {
     var pair = pairs[idx];
     topEl.textContent = pair.top;
-    verbEl.textContent = pair.verb;
-    verbEl.style.color = pair.color;
+    bottomEl.textContent = pair.bottom;
+    bottomEl.style.color = pair.color;
 
     setHidden(topEl, 'left');
     setHidden(bottomEl, 'right');
