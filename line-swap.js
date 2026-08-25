@@ -3,8 +3,8 @@
 // ~1s later sliding in from the right. The whole bottom line takes on
 // a highlight color per pair; the top line stays black.
 (function () {
-  var topEl = document.getElementById('heroTop');
-  var bottomEl = document.getElementById('heroBottom');
+  var topEl = document.getElementById('lineTop');
+  var bottomEl = document.getElementById('lineBottom');
   if (!topEl || !bottomEl) return;
 
   var pairs = [
