@@ -7,12 +7,16 @@
   if (!hero || !topEl || !bottomEl) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  // Two pairs per service card; tone matches that card's colour.
   const pairs = [
-    { top: "Something broken?", bottom: "Let me take a look." },
-    { top: "Disobedient printer?", bottom: "Not for long." },
-    { top: "Tech questions?", bottom: "Human answers." },
-    { top: "Setup woes?", bottom: "Taken care of." },
-    { top: "Stuck on something?", bottom: "Make it my problem." },
+    { top: "Something broken?", bottom: "Let me take a look.", tone: "tech" },
+    { top: "Disobedient printer?", bottom: "Not for long.", tone: "install" },
+    { top: "No website yet?", bottom: "Let's fix that.", tone: "web" },
+    { top: "Stuck on something?", bottom: "Make it my problem.", tone: "else" },
+    { top: "Tech questions?", bottom: "Human answers.", tone: "tech" },
+    { top: "Setup woes?", bottom: "Taken care of.", tone: "install" },
+    { top: "Site stuck in 2009?", bottom: "Time for a refresh.", tone: "web" },
+    { top: "Not on the list?", bottom: "Ask anyway.", tone: "else" },
   ];
 
   const ENTER = 450;
@@ -48,7 +52,7 @@
     const pair = pairs[index];
     topEl.textContent = pair.top;
     bottomEl.textContent = pair.bottom;
-    bottomEl.dataset.tone = String(index + 1);
+    bottomEl.dataset.tone = pair.tone;
 
     place(topEl, "left");
     place(bottomEl, "right");
