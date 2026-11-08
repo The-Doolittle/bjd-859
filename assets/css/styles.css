@@ -359,8 +359,8 @@ h1 {
 
 .card--book .card__tag { color: var(--accent-book); }
 .card--book .card__go { color: var(--accent-book-dark); }
-.card--contact .card__tag { color: var(--accent-contact); }
-.card--contact .card__go { color: var(--accent-contact-dark); }
+.card--form .card__tag { color: var(--accent-contact); }
+.card--form .card__go { color: var(--accent-contact-dark); }
 
 /* Panels (sub pages) */
 .panel {
@@ -428,7 +428,64 @@ h1 {
   font-weight: 400;
 }
 
-.field input,
+.form__row {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field--group {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.field--group legend {
+  margin-bottom: var(--space-2);
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.choices-list {
+  display: grid;
+  gap: var(--space-2) var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .choices-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+  cursor: pointer;
+}
+
+.check input {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  accent-color: var(--accent-contact);
+}
+
+.field__hint {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.field input:not([type="checkbox"]),
+.field select,
 .field textarea {
   width: 100%;
   padding: var(--space-3) var(--space-4);
@@ -446,6 +503,7 @@ h1 {
 }
 
 .field input:focus-visible,
+.field select:focus-visible,
 .field textarea:focus-visible {
   outline-color: var(--accent-contact);
   outline-offset: 1px;
