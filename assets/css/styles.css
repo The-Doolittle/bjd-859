@@ -31,12 +31,12 @@
   --shadow: 0 8px 24px rgb(20 23 26 / 0.08);
 
   /* One colour per service; cards, hero answers and form pages share them */
-  --c-tech: #3654f4;
-  --c-tech-dark: #2542c9;
+  --c-tech: #0e7490;
+  --c-tech-dark: #155e75;
   --c-install: #a85a09;
   --c-install-dark: #8a4907;
-  --c-web: #7c3aed;
-  --c-web-dark: #6d28d9;
+  --c-web: #9d27b0;
+  --c-web-dark: #7b1fa2;
   --c-else: #15803d;
   --c-else-dark: #166534;
 
