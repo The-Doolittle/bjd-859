@@ -1,104 +1,83 @@
-// Hero headline: two lines rotate together as word pairs, like a quick
-// text exchange — top line slides in from the left, bottom line follows
-// ~1s later sliding in from the right. The whole bottom line takes on
-// a highlight color per pair; the top line stays black.
-(function () {
-  var topEl = document.getElementById('lineTop');
-  var bottomEl = document.getElementById('lineBottom');
-  if (!topEl || !bottomEl) return;
+// Hero headline: rotates question/answer pairs. The top line enters from the
+// left, the bottom line follows from the right in that pair's colour.
+(() => {
+  const hero = document.querySelector(".hero");
+  const topEl = document.getElementById("line-top");
+  const bottomEl = document.getElementById("line-bottom");
+  if (!hero || !topEl || !bottomEl) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  var pairs = [
-    { top: 'Something broken?', bottom: 'Let me take a look.', color: '#0891b2' },   // cyan
-    { top: 'Disobedient printer?', bottom: 'Not for long.', color: '#4d7c0f' },       // lime green
-    { top: 'Tech questions?', bottom: 'Human answers.', color: '#ea580c' },           // red-orange
-    { top: 'Setup woes?', bottom: 'Taken care of.', color: '#1e3a8a' },               // dark blue
-    { top: 'Stuck on something?', bottom: 'Make it my problem.', color: '#7c3aed' }   // violet
+  const pairs = [
+    { top: "Something broken?", bottom: "Let me take a look." },
+    { top: "Disobedient printer?", bottom: "Not for long." },
+    { top: "Tech questions?", bottom: "Human answers." },
+    { top: "Setup woes?", bottom: "Taken care of." },
+    { top: "Stuck on something?", bottom: "Make it my problem." },
   ];
 
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ENTER = 450;
+  const STAGGER = 900;
+  const HOLD = 2000;
+  const EXIT = 350;
+  const GAP = 200;
 
-  if (reduceMotion) {
-    // Static: show the first pair, no animation, no cycling.
-    topEl.textContent = pairs[0].top;
-    bottomEl.textContent = pairs[0].bottom;
-    bottomEl.style.color = pairs[0].color;
-    topEl.classList.add('visible');
-    bottomEl.classList.add('visible');
-    return;
-  }
-
-  var ENTER_DUR = 450;
-  var STAGGER = 900;
-  var HOLD = 2000;
-  var EXIT_DUR = 350;
-  var GAP = 200;
-
-  var idx = 0;
-  var timers = [];
+  let index = 0;
+  let timers = [];
 
   function clearTimers() {
     timers.forEach(clearTimeout);
     timers = [];
   }
 
-  function setHidden(el, direction) {
-    el.classList.remove('visible', 'exit');
-    el.classList.add(direction === 'left' ? 'hidden-left' : 'hidden-right');
+  function place(el, side) {
+    el.classList.remove("is-visible", "is-leaving", "is-left", "is-right");
+    el.classList.add(side === "left" ? "is-left" : "is-right");
   }
 
   function show(el) {
-    el.classList.remove('hidden-left', 'hidden-right', 'exit');
-    el.classList.add('visible');
+    el.classList.remove("is-left", "is-right", "is-leaving");
+    el.classList.add("is-visible");
   }
 
-  function exitLine(el) {
-    el.classList.remove('visible');
-    el.classList.add('exit');
+  function leave(el) {
+    el.classList.remove("is-visible");
+    el.classList.add("is-leaving");
   }
 
   function runCycle() {
-    var pair = pairs[idx];
+    const pair = pairs[index];
     topEl.textContent = pair.top;
     bottomEl.textContent = pair.bottom;
-    bottomEl.style.color = pair.color;
+    bottomEl.dataset.tone = String(index + 1);
 
-    setHidden(topEl, 'left');
-    setHidden(bottomEl, 'right');
+    place(topEl, "left");
+    place(bottomEl, "right");
 
-    // Force a reflow so the hidden starting position is committed before
-    // we transition to visible on the next frame.
+    // Commit the start position before the transition begins.
     void topEl.offsetHeight;
+    requestAnimationFrame(() => requestAnimationFrame(() => show(topEl)));
 
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        show(topEl);
-      });
-    });
-
-    timers.push(setTimeout(function () { show(bottomEl); }, STAGGER));
-
-    var exitAt = STAGGER + ENTER_DUR + HOLD;
-    timers.push(setTimeout(function () {
-      exitLine(topEl);
-      exitLine(bottomEl);
-    }, exitAt));
-
-    var nextAt = exitAt + EXIT_DUR + GAP;
-    timers.push(setTimeout(function () {
-      idx = (idx + 1) % pairs.length;
-      runCycle();
-    }, nextAt));
+    const exitAt = STAGGER + ENTER + HOLD;
+    timers.push(setTimeout(() => show(bottomEl), STAGGER));
+    timers.push(
+      setTimeout(() => {
+        leave(topEl);
+        leave(bottomEl);
+      }, exitAt),
+    );
+    timers.push(
+      setTimeout(() => {
+        index = (index + 1) % pairs.length;
+        runCycle();
+      }, exitAt + EXIT + GAP),
+    );
   }
 
+  hero.classList.add("is-cycling");
   runCycle();
 
-  // Pause the cycle when the tab isn't visible, resume cleanly when it is.
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) {
-      clearTimers();
-    } else {
-      clearTimers();
-      runCycle();
-    }
+  document.addEventListener("visibilitychange", () => {
+    clearTimers();
+    if (!document.hidden) runCycle();
   });
 })();

@@ -1,24 +1,28 @@
-// Subtle cursor-reactive highlight on the dot grid background.
-// Skips entirely on touch devices / reduced-motion (handled in CSS too).
-(function () {
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var noHover = window.matchMedia('(hover: none)').matches;
-  if (reduceMotion || noHover) return;
+// Moves the dot-grid highlight with the pointer. Skipped on touch devices and
+// with reduced motion, where the CSS hides the highlight layer too.
+(() => {
+  const skip =
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    window.matchMedia("(hover: none)").matches;
+  if (skip) return;
 
-  var target = document.documentElement;
-  var ticking = false;
-  var lastX = 0, lastY = 0;
+  const root = document.documentElement;
+  let ticking = false;
+  let x = 0;
+  let y = 0;
 
-  window.addEventListener('mousemove', function (e) {
-    lastX = e.clientX;
-    lastY = e.clientY;
+  function update() {
+    root.style.setProperty("--x", `${x}px`);
+    root.style.setProperty("--y", `${y}px`);
+    ticking = false;
+  }
+
+  window.addEventListener("mousemove", (event) => {
+    x = event.clientX;
+    y = event.clientY;
     if (!ticking) {
-      window.requestAnimationFrame(function () {
-        target.style.setProperty('--x', lastX + 'px');
-        target.style.setProperty('--y', lastY + 'px');
-        ticking = false;
-      });
       ticking = true;
+      requestAnimationFrame(update);
     }
   });
 })();
