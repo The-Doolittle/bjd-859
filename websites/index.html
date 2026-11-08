@@ -104,15 +104,8 @@
         <div class="form__row">
           <div class="field">
             <label for="budget">Budget</label>
-            <select id="budget" name="budget">
-              <option value="">Choose a range</option>
-              <option>Under $500</option>
-              <option>$500–$1,500</option>
-              <option>$1,500–$3,000</option>
-              <option>$3,000–$6,000</option>
-              <option>$6,000+</option>
-              <option>Not sure yet</option>
-            </select>
+            <input type="text" id="budget" name="budget" aria-describedby="budget-hint">
+            <p class="field__hint" id="budget-hint">If you have a budget in mind, let me know. If not, don't worry about it.</p>
           </div>
           <div class="field">
             <label for="timeline">When do you want it live?</label>
