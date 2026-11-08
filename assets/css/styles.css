@@ -31,6 +31,7 @@
   --shadow: 0 8px 24px rgb(20 23 26 / 0.08);
 
   /* One colour per service; cards, hero answers and form pages share them */
+  --c-tech-bright: #0891b2;
   --c-tech: #0e7490;
   --c-tech-dark: #155e75;
   --c-install: #a85a09;
@@ -40,6 +41,7 @@
   --c-else: #15803d;
   --c-else-dark: #166534;
 
+  --accent-bright: var(--c-tech-bright);
   --accent: var(--c-tech);
   --accent-dark: var(--c-tech-dark);
 
@@ -74,23 +76,29 @@
   --ease: 0.15s ease;
 }
 
-/* Service themes: set on a card, or on <body> for that service's page */
+/* Service themes: set on a card, or on <body> for that service's page.
+   --accent-bright is for large text and decoration only; small text and
+   buttons use --accent and --accent-dark, which pass AA at any size. */
 .theme-tech {
+  --accent-bright: var(--c-tech-bright);
   --accent: var(--c-tech);
   --accent-dark: var(--c-tech-dark);
 }
 
 .theme-install {
+  --accent-bright: var(--c-install);
   --accent: var(--c-install);
   --accent-dark: var(--c-install-dark);
 }
 
 .theme-web {
+  --accent-bright: var(--c-web);
   --accent: var(--c-web);
   --accent-dark: var(--c-web-dark);
 }
 
 .theme-else {
+  --accent-bright: var(--c-else);
   --accent: var(--c-else);
   --accent-dark: var(--c-else-dark);
 }
@@ -156,7 +164,7 @@ a {
 }
 
 .dot-grid-highlight {
-  background-image: radial-gradient(circle, var(--accent) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(circle, var(--accent-bright) 1.5px, transparent 1.5px);
   opacity: 0.55;
   mask-image: radial-gradient(
     circle var(--glow-radius) at var(--x, 50%) var(--y, 50%),
@@ -280,7 +288,7 @@ h1 {
 }
 
 .hero__line--bottom {
-  color: var(--c-tech);
+  color: var(--c-tech-bright);
 }
 
 .hero__line[data-tone="install"] { color: var(--c-install); }
@@ -383,7 +391,7 @@ h1 {
 
 .card:hover,
 .card:focus-visible {
-  border-color: var(--accent);
+  border-color: var(--accent-bright);
 }
 
 /* Panels (sub pages) */
@@ -508,7 +516,7 @@ h1 {
   color: var(--text-muted);
 }
 
-.field input:not([type="checkbox"]),
+.field input:not([type="checkbox"], [type="radio"]),
 .field select,
 .field textarea {
   width: 100%;

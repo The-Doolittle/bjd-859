@@ -68,37 +68,32 @@
         </div>
 
         <fieldset class="field field--group">
-          <legend>What needs doing?</legend>
+          <legend>Residence or business? <span class="field__req">(required)</span></legend>
           <div class="choices-list">
-            <label class="check"><input type="checkbox" name="job_type" value="Wi-Fi and networking"> Wi-Fi and networking</label>
-            <label class="check"><input type="checkbox" name="job_type" value="Computers and printers"> Computers and printers</label>
-            <label class="check"><input type="checkbox" name="job_type" value="TV and home theater"> TV and home theater</label>
-            <label class="check"><input type="checkbox" name="job_type" value="Smart home"> Smart home</label>
-            <label class="check"><input type="checkbox" name="job_type" value="Security cameras"> Security cameras</label>
-            <label class="check"><input type="checkbox" name="job_type" value="Something else"> Something else</label>
+            <label class="check"><input type="radio" name="property" value="Residence" required> Residence</label>
+            <label class="check"><input type="radio" name="property" value="Business"> Business</label>
           </div>
         </fieldset>
 
-        <div class="form__row">
-          <div class="field">
-            <label for="property">Home or business?</label>
-            <select id="property" name="property">
-              <option value="">Choose one</option>
-              <option>Home</option>
-              <option>Business</option>
-              <option>Other</option>
-            </select>
+        <fieldset class="field field--group">
+          <legend>Type of job <span class="field__req">(required)</span></legend>
+          <div class="choices-list">
+            <label class="check"><input type="radio" name="job_type" value="Networking &amp; Internet" required> Networking &amp; Internet</label>
+            <label class="check"><input type="radio" name="job_type" value="Security &amp; Access Control"> Security &amp; Access Control</label>
+            <label class="check"><input type="radio" name="job_type" value="Computers &amp; TVs"> Computers &amp; TVs</label>
+            <label class="check"><input type="radio" name="job_type" value="Other"> Other</label>
           </div>
-          <div class="field">
-            <label for="equipment">Do you have the equipment?</label>
-            <select id="equipment" name="equipment">
-              <option value="">Choose one</option>
-              <option>Yes, all of it</option>
-              <option>Some of it</option>
-              <option>No, I need help choosing</option>
-              <option>Not sure</option>
-            </select>
-          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="equipment">Do you have the equipment?</label>
+          <select id="equipment" name="equipment">
+            <option value="">Choose one</option>
+            <option>Yes, all of it</option>
+            <option>Some of it</option>
+            <option>No, I need help choosing</option>
+            <option>Not sure</option>
+          </select>
         </div>
 
         <div class="form__row">
