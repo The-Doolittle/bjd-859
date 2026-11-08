@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — bjd859</title>
-<meta name="description" content="Tell me about your project and I'll follow up with next steps or a quote.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | bjd859</title>
+  <meta name="description" content="Tell me about your project and I'll follow up with next steps or a quote.">
+  <link rel="canonical" href="https://bjd859.com/contact/">
+  <meta name="theme-color" content="#f6f7f9">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="bjd859">
+  <meta property="og:title" content="Contact | bjd859">
+  <meta property="og:description" content="Tell me about your project and I'll follow up with next steps or a quote.">
+  <meta property="og:url" content="https://bjd859.com/contact/">
+  <meta property="og:image" content="https://bjd859.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Something broken? Let me take a look. Tech help, on demand from bjd859.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="/assets/js/cursor-fx.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="dot-grid" aria-hidden="true"></div>
   <div class="dot-grid-highlight" aria-hidden="true"></div>
 
@@ -18,51 +33,37 @@
     <a class="wordmark" href="/">bjd859</a>
   </header>
 
-  <main class="page">
+  <main class="page" id="main">
     <a class="back-link" href="/">← Back</a>
-    <div class="panel">
-      <span class="eyebrow">Something bigger</span>
-      <h2>Tell me what's going on</h2>
-      <p class="lede" style="margin-bottom: 0;">For custom projects, larger jobs, or anything that needs more than a quick call. I'll follow up with next steps or a quote.</p>
+    <section class="panel">
+      <h1>Tell me what's going on</h1>
+      <p class="lede">For custom projects, larger jobs, or anything that needs more than a quick call. I'll follow up with next steps or a quote.</p>
 
-      <!--
-        FORM BACKEND — FormSubmit.co (no signup, no server needed).
-        Submits directly to team@doolittledoes.com.
-
-        IMPORTANT — first submission only:
-        FormSubmit sends a one-time "activation" email to
-        team@doolittledoes.com the first time this form is submitted.
-        Someone with access to that inbox has to click the confirm link
-        in that email before any submissions start arriving normally.
-        Test it once after deploying to trigger that email.
-      -->
-      <form class="contact-form" action="https://formsubmit.co/team@doolittledoes.com" method="POST">
-        <input type="hidden" name="_subject" value="New message from bjd859.com">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://bjd859.com/thanks/">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <form class="form" action="https://forms.doolab.dev/bjd859/contact" method="post">
+        <div class="form__hp" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
 
         <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required>
+          <label for="name">Name <span class="field__req">(required)</span></label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
         </div>
         <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="_replyto" required>
+          <label for="email">Email <span class="field__req">(required)</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
         </div>
         <div class="field">
-          <label for="message">What do you need help with?</label>
-          <textarea id="message" name="message" required></textarea>
+          <label for="message">What do you need help with? <span class="field__req">(required)</span></label>
+          <textarea id="message" name="message" rows="6" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary contact-theme">Send</button>
+        <button type="submit" class="btn">Send</button>
       </form>
 
       <p class="crosslink">Just need something quick? <a href="/book/">Book a call instead →</a></p>
-    </div>
+    </section>
   </main>
 
-  <footer class="site-footer">bjd859.com</footer>
-
-  <script src="/assets/js/cursor-fx.js"></script>
+  <footer class="site-footer">© 2026 bjd859.com</footer>
 </body>
 </html>
